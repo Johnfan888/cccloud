@@ -1,0 +1,140 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+
+  <div class="row">
+	<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+		<h2>添加安全组</h2>
+	</div>
+</div>
+  <div class="row">
+
+				<div class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+					<div class="row">
+
+
+	<div class="containerw3layouts-agileits">
+		<div class="w3layoutscontactagileits">
+		<form action="{{ url_for("add_vm_security_group",VM_Names=VM_Names,Security_group_Names=Security_group_Names,Security_group_type_Names=Security_group_type_Names,user_id=current_user.id) }}" class="fh5co-form" method="POST" name="create">
+
+
+
+<!--
+					<div class="w3lsjourneyaits agileinfow3ls">
+						<div class="w3lsjourneyaits-lable wthreelable">
+							<span class="aitsjourney-lable">
+								<label>VM name</label>
+							</span>
+							<span class="colon">:</span>
+						</div>
+						<div class="w3lsjourneyaits-input wthreeinput">
+							<select class="form-control" name="VMname">
+								<option value="wr">wr</option>
+								<option value="rhel7.0">rhel7.0</option>
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+-->
+
+
+					<div class="w3lsjourneyaits agileinfow3ls">
+						<div class="w3lsjourneyaits-lable wthreelable">
+							<span class="aitsjourney-lable">
+								<label>***VM name***</label>
+							</span>
+							<span class="colon">:</span>
+						</div>
+
+						<div class="w3lsjourneyaits-input wthreeinput">
+							<select class="form-control" name="VMname">
+								{% for VM_Name in VM_Names %}
+									<option value="{{VM_Name}}"> {{VM_Name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+
+
+
+
+					<div class="w3lsjourneyaits agileinfow3ls">
+						<div class="w3lsjourneyaits-lable wthreelable">
+							<span class="aitsjourney-lable">
+								<label>***security_group name***</label>
+							</span>
+							<span class="colon">:</span>
+						</div>
+
+						<div class="w3lsjourneyaits-input wthreeinput">
+							<select class="form-control" name="Securitygroupname">
+								{% for Security_group_Name in Security_group_Names %}
+									<option value="{{Security_group_Name}}"> {{Security_group_Name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+
+
+
+					<div class="w3lsjourneyaits agileinfow3ls">
+						<div class="w3lsjourneyaits-lable wthreelable">
+							<span class="aitsjourney-lable">
+								<label>***security_group_type name***</label>
+							</span>
+							<span class="colon">:</span>
+						</div>
+
+						<div class="w3lsjourneyaits-input wthreeinput">
+							<select class="form-control" name="Securitygrouptypename">
+								{% for Security_group_type_Name in Security_group_type_Names %}
+									<option value="{{Security_group_type_Name}}"> {{Security_group_type_Name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+
+
+
+
+
+					<div class="aitssubmitw3ls">
+						<input class="btn btn-primary" type="submit" name="submit" value="submit">
+					</div>
+            </form>
+        </div>
+
+    </div>
+
+		<div class="w3lsfooteragileits">
+			<p> &copy; 2017 Taxi Booking Form. All Rights Reserved | Design by <a href="http://w3layouts.com" target="=_blank">W3layouts</a></p>
+		</div>
+
+
+
+		<!-- Necessary-JavaScript-Files-&-Links -->
+
+        <!-- Default-JavaScript --> <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-2.1.4.min.js') }}"></script>
+
+			<!-- Date-Picker-JavaScript -->
+                <script src="{{ url_for('static',filename='js/jquery-ui.js') }} "></script>
+				<script>
+					$(function() {
+						$( "#datepicker1,#datepicker2" ).datepicker();
+					});
+				</script>
+
+
+					</div>
+				</div>
+			</div>
+{% endblock %}

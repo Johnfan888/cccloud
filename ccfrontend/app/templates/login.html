@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block style %}
+	{{ super() }}
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/animate.css">
+	<link rel="stylesheet" href="/static/css/style2.css">
+
+
+	<!-- Modernizr JS -->
+	<script src="/static/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+{% endblock %}
+
+
+
+
+{% block bloodycontent %}
+<div  style="height:100%; width: 100%; background-image:url('/static/images/bg_2.jpg');background-position: -20% center;background-repeat: no-repeat;background-size: cover;">
+<div class="container">
+<div class="row">
+	<div class="col-md-4">
+					
+	<!-- Start Sign In Form -->
+
+		<form action="/login" class="fh5co-form" method="post" name="login">
+		{{ form.hidden_tag() }}
+			<h2>登 录</h2>
+				<div class="form-group">
+					<label for="username" class="sr-only">Username</label>
+					<input type="text" class="form-control" id="user_name" Name="user_name" placeholder="Username" autocomplete="off">
+				</div>
+
+   {% for error in form.errors.user_name %}
+   <p style="color:red;">[-] {{ error }}</p>
+   {% endfor %}
+				<div class="form-group">
+					<label for="password" class="sr-only">Password</label>
+					<input id="user_passwd" name="user_passwd"  type="password" class="form-control"placeholder="Password" autocomplete="off">
+				</div>
+
+   {% for error in form.errors.user_passwd %}
+   <p style="color:red;">[-] {{ error }}</p>
+   {% endfor %}
+				<div class="form-group">
+					<label for="remember"><input id="remember_me" name="remember_me" value="y" type="checkbox"> Remember Me</label>
+				</div>
+				<div class="form-group">
+					<p>Not registered? <a href="{{ url_for('sign_up') }}">Sign Up</a></p>
+				</div>
+				<div class="form-group">
+					<input type="submit" name="submit" id="submit" value="Log in" class="btn btn-primary">
+				</div>
+			</form>
+			<!-- END Sign In Form -->
+		</div>
+	</div>
+</div>
+</form>
+
+{% endblock %}

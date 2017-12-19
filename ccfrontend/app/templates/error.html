@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		{% if not current_user.is_authenticated %}
+		<h1>你好！</h1>
+		{% else %}
+		<h1>***Sorry, {{ current_user.nickname }}! ,There is a error************</h1>
+		{% endif %}
+
+		{% for post in posts %}
+		    <p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="row">
+
+<img src="/static/images/image_5.jpg">
+	</div>
+</div>
+
+
+{% endblock %}

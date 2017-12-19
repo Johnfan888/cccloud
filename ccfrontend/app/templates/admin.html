@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="admin" >
+    <center>
+    <table class="table">
+     <thead>
+        <tr>
+            <th> 昵称 </th>
+            <th> email </th>
+            <th> 权限 </th>
+
+
+        </tr>
+     </thead> 
+       {% for user in users %}
+        <tr>
+            <td>{{ user['nickname'] }} </td>
+            <td>{{ user['email'] }} </td>
+            <td>{% if user['role'] == 0 %} 用户
+                {% else %} 管理员 
+                {% endif %}
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        <thead>
+            <td>
+                <form action="{{ url_for("modify_user_type", user_id = current_user.id) }}" method ="POST">
+                    <input type="submit" name='modify_user_type' value='编辑用户类型'>
+
+                </form>
+            </td>
+            <td>
+                <form action="{{ url_for("delete_user", user_id = current_user.id) }}" method ="POST">
+
+                    <input type="submit" name='delete_user' value='Delete'>
+                </form>
+            </td>
+        </thead>
+        </table>
+
+    </center>
+</div>
+
+{% endblock %}

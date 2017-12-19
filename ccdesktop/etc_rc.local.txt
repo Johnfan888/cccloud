@@ -1,0 +1,40 @@
+#!/bin/bash -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+echo "*******************"
+echo "*******************"
+echo "*******************"
+echo -e "\n"
+ifconfig | grep "eth0" | awk -F " " '{print $5}' &> /usr/bin/mac.txt
+#read -p "please input (l or w),l is linux w is windows:  " value
+echo -e "\n"
+login_type=`python /usr/bin/login_type.py `
+login_ip=`python /usr/bin/login_ip.py `
+if [ "$login_type" == "linux" ] ; then 
+sed -i "s/server.*/server=$login_ip:1/g" /usr/bin/RDPlinux.remmina
+sed -i "s/ssh_server.*/ssh_server=/g" /usr/bin/RDPlinux.remmina
+/usr/bin/mystartwinx -c /usr/bin/RDPlinux.remmina
+elif [ "$login_type" == "windows" ] ; then
+sed -i "s/server.*/server=$login_ip/g" /usr/bin/RDPwindows.remmina
+sed -i "s/ssh_server.*/ssh_server=/g" /usr/bin/RDPwindows.remmina
+/usr/bin/mystartwinx -c /usr/bin/RDPwindows.remmina
+        else
+		echo "  --> ***your host_type is not linux or windows, starting reboot !!!! *** "
+		echo "  --> ***your host_type is not linux or windows, starting reboot !!!! *** "
+		echo "  --> ***your host_type is not linux or windows, starting reboot !!!! *** "
+		echo "  --> ***your host_type is not linux or windows, starting reboot !!!! *** "
+		echo "  --> ***your host_type is not linux or windows, starting reboot !!!! *** "
+		echo "  --> ***your host_type is not linux or windows, starting reboot !!!! *** "
+                reboot
+fi
+
+exit 0

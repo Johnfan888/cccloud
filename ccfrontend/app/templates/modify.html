@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% block style %}
+        {{ super() }}
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/animate.css">
+	<link rel="stylesheet" href="/static/css/style2.css">
+
+
+	<!-- Modernizr JS -->
+	<script src="/static/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+{% endblock %}
+
+
+
+{% block bloodycontent %}
+<div  style="height:100%; width: 100%; background-image:url('/static/images/geometry2.png');">
+<div class="container">
+<div class="row">
+	<div class="col-md-3">
+					<h3></h3>
+					<ul class="contact-info">
+						<li>导航：</li>
+						<li><a href="#001">选择虚拟机</a></li>
+						<li><a href="#002">基础详情</a></li>
+						<li><a href="#003">访问与安全</a></li>
+
+					</ul>
+				</div>
+				<div class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+					<div class="row">
+<!-- Start Sign In Form -->
+
+		<form action="{{ url_for("modify", user_id=current_user.id) }}" class="fh5co-form" method="POST" name="modify">
+		{{ form.hidden_tag() }}
+			<h3>Modify VM</h3>
+	<h2>选择要修改的虚拟机:<a name="001"></a></h2>
+					<div class="w3lsjourneyaits agileinfow3ls">
+						<div class="w3lsjourneyaits-lable wthreelable">
+							<span class="aitsjourney-lable">
+								<label>VM`s name</label>
+							</span>
+							<span class="colon">:</span>
+						</div>
+
+						<div class="w3lsjourneyaits-input wthreeinput">
+							<select class="form-control" name="VMname">
+								{% for VM_Name in VM_Names %}
+									<option value="{{VM_Name}}"> {{VM_Name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+	<h2>基础详情:<a name="002"></a></h2>
+				<div class="form-group">
+					<label for="vm_name" class="sr-only">Username</label>
+					<input type="text" class="form-control" id="vm_name" name="vm_name" placeholder="VM`s name" autocomplete="off">
+				</div>
+
+   {% for error in form.errors.vm_name %}
+   <p style="color:red;">[-] {{ error }}</p>
+   {% endfor %}
+
+
+
+				<div class="form-group">
+					<label for="vm_volume" class="sr-only">Password</label>
+					<input id="vm_volume" name="vm_volume" pattern="[0-9]*"  type="text" class="form-control"placeholder="volume" autocomplete="off">
+				</div>
+
+   {% for error in form.errors.vm_volume %}
+   <p style="color:red;">[-] {{ error }}</p>
+   {% endfor %}
+
+
+
+
+				<div class="form-group">
+					<label for="vm_rent_time" class="sr-only">Password</label>
+					<input id="vm_rent_time" name="vm_rent_time" pattern="[0-9]*"  type="number" class="form-control"placeholder="tenancy" autocomplete="off">
+				</div>
+
+   {% for error in form.errors.vm_rent_time %}
+   <p style="color:red;">[-] {{ error }}</p>
+   {% endfor %}
+
+
+					<div class="w3lsjourneyaits agileinfow3ls">
+						<div class="w3lsjourneyaits-lable wthreelable">
+							<span class="aitsjourney-lable">
+								<label>VM`s flavor</label>
+							</span>
+							<span class="colon">:</span>
+						</div>
+
+						<div class="w3lsjourneyaits-input wthreeinput">
+							<select class="form-control" name="VMflavor">
+								{% for VM_Flavor in VM_Flavors %}
+									<option value="{{VM_Flavor}}"> {{VM_Flavor}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+<h2>访问与安全:<a name="003"></a></h2>
+				<div class="fo<d-group">
+					<label for="client_mac" class="sr-only">client_mac</label>
+					<input type="text" class="form-control" id="client_mac" name="client_mac" placeholder="your client_mac">
+				</div>
+
+   {% for error in form.errors.client_mac %}
+   <p style="color:red;">[-] {{ error }}</p>
+   {% endfor %}
+
+
+
+
+
+						<div class="w3lsjourneyaits agileinfow3ls">
+						<div class="w3lsjourneyaits-lable wthreelable">
+							<span class="aitsjourney-lable">
+								<label>云主机floating_ip</label>
+							</span>
+							<span class="colon">:</span>
+						</div>
+
+						<div class="w3lsjourneyaits-input wthreeinput">
+							<select class="form-control" name="VMfloatingip">
+								{% for VM_Floatingip in VM_Floatingips %}
+									<option value="{{VM_Floatingip}}"> {{VM_Floatingip}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+
+
+
+
+				<div class="form-group">
+					<input type="submit" name="submit" id="submit" value="submit" class="btn btn-primary">
+				</div>
+			</form>
+			<!-- END Sign In Form -->
+		</div>
+	</div>
+</div>
+</form>
+
+{% endblock %}
+

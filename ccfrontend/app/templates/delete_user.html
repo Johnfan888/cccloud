@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+
+  <div class="row">
+	<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+		<h2>delete user</h2>
+	</div>
+</div>
+  <div class="row">
+
+				<div class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+					<div class="row">
+
+
+	<div class="containerw3layouts-agileits">
+		<div class="w3layoutscontactagileits">
+		<form action="{{ url_for("delete_user", USER_Names=USER_Names,user_id=current_user.id) }}" class="fh5co-form" method="POST" name="delete">
+
+
+					<div class="w3lsjourneyaits agileinfow3ls">
+						<div class="w3lsjourneyaits-lable wthreelable">
+							<span class="aitsjourney-lable">
+								<label>User name</label>
+							</span>
+							<span class="colon">:</span>
+						</div>
+						<div class="w3lsjourneyaits-input wthreeinput">
+							<select class="form-control" name="UserName">
+								{% for USER_Name in USER_Names %}
+									<option value="{{USER_Name}}"> {{USER_Name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+
+
+
+
+					<div class="aitssubmitw3ls">
+						<input class="btn btn-primary" type="submit" name="submit" value="submit">
+					</div>
+			</form>
+        </div>
+
+    </div>
+
+
+
+
+
+		<!-- Necessary-JavaScript-Files-&-Links -->
+
+        <!-- Default-JavaScript --> <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-2.1.4.min.js') }}"></script>
+
+			<!-- Date-Picker-JavaScript -->
+                <script src="{{ url_for('static',filename='js/jquery-ui.js') }} "></script>
+				<script>
+					$(function() {
+						$( "#datepicker1,#datepicker2" ).datepicker();
+					});
+				</script>
+
+
+					</div>
+				</div>
+			</div>
+{% endblock %}

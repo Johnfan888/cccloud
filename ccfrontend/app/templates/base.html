@@ -1,0 +1,116 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - istl_VPS</title>
+    {% else %}
+    <title>istl_VPS</title>
+    {% endif %}
+
+    {% block style %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+    
+
+  
+
+      <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="/static/css/icomoon.css">
+    <!-- Simple Line Icons -->
+    <link rel="stylesheet" href="/static/css/simple-line-icons.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="/static/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    {% endblock %}
+    </head>
+    <body>
+    {% block nav %}
+
+    <header id="fh5co-header" role="banner">
+        <div class="jumbotron">
+            <div class="container">
+                <div class="header-inner">
+                <h1><a style="color:  #47d1d1;;" href="{{ url_for('index') }}">openstack</a></h1>
+                <nav role="navigation">
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+
+                       {% if not current_user.is_authenticated %}
+                        <li><a href="{{ url_for('login') }}">登录</a></li>
+                        <li><a href="{{ url_for('sign_up') }}">注册</a></li>
+                        {% else %}
+                        {% if current_user.is_admin() %}
+                        <li><a href="{{ url_for('admin', user_id = current_user.id) }}">管理用户</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('users', user_id = current_user.id) }}">我的主页</a></li>
+                        <li><a href="{{ url_for('create', user_id = current_user.id) }}">创建云主机</a></li>
+                        <li><a href="{{ url_for('vm_power', user_id = current_user.id) }}">云主机电源</a></li>
+                        <li><a href="{{ url_for('manage', user_id = current_user.id) }}">云主机管理</a></li>
+                        <li><a href="{{ url_for('vm_snapshoot', user_id = current_user.id) }}">快照选项</a></li>
+                        <li><a href="{{ url_for('vm_security_group', user_id = current_user.id) }}">我的安全组</a></li>
+                        <li><a href="{{ url_for('vm_cloud_volume', user_id = current_user.id) }}">我的云硬盘</a></li>
+                        <li><a href="{{ url_for('logout') }}">退出登录</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+	{% block bloodycontent %}{% endblock %}
+    <div id="fh5co-work-section">
+        <div class="container">
+            <div class="row">
+
+	    {% with messages = get_flashed_messages() %}
+	    {% if messages %}
+	    <ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	    </ul>
+	    {% endif %}
+	    {% endwith %}
+    	{% endblock %}
+
+	    {% block content %}{% endblock %}
+
+	</div>
+	</div>
+</div>
+  </body>
+
+  {% block js %}{% endblock %}
+</html>
+
