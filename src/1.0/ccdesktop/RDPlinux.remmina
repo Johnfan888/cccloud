@@ -1,0 +1,11 @@
+ 
+ 
+
+
+	由于某些原因，这个RDPlinux.remmina文件我只做了截图，我们在同目录下可以看到RDPlinux图片。
+ 
+
+	这个RDPlinux.remmina文件，是在桌面环境下，打开remmina软件，然后先连接一个linux的虚拟机，这时候就会保存一个对于这个虚拟机的 xxx.remmina文件，我们把分辨率，画质等调好之后，就以这个remmina文件为模板连接以后的linux。我的这个RDPlinux.remmina文件就是这样产生的。
+
+
+	接下来说一说我们的这个RDPlinux.remmina文件，里面的这个密码选项是123456，就是vncserver那边的vnc的密码统一规定为123456（意思就是在openstack的镜像里面就设置好着呢），我们在remmina软件打开之后，填好我们创建的云主机浮动ip地址，也就是vnc服务器地址后，密码输入123456   但我们看到xxx.remmina文件里面会是一段字母加符号，就像上面图片里面的，这个不用管，这是remmina加密过后的，是正常的。
